@@ -1,3 +1,10 @@
+<html>
+    <head>
+    <title>Budget Vatera</title>
+    <h1>Budgetera</h1>
+    </head>
+</html>
+
 <?php
 // Initialize the session
 session_start();
