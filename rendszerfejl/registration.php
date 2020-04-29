@@ -21,6 +21,10 @@ h2 {
     color: yellow;
 }
 
+.aa1:visited{
+    color: yellowgreen;
+}
+
 .aa1:hover {
     color: green;
 }

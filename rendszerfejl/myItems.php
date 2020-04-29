@@ -18,13 +18,20 @@ hr {
     border: none;
 }
 
+.aa1:link{
+    color:yellow;
+}
+
+.aa1:visited{
+    color: yellowgreen;
+}
 
 .aa1:hover {
     color: green;
 }
 
-.aa1:visited {
-  color: hotpink;
+.aa1:active{
+    color: yellow;
 }
 
 p {

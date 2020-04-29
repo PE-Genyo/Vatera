@@ -22,6 +22,10 @@ p {
     color: yellow;
 }
 
+.aa1:visited{
+    color: yellowgreen;
+}
+
 .aa1:hover {
     color: green;
 }

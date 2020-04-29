@@ -53,7 +53,7 @@ class User
             }
             foreach ($items as $oneItem){
                 //print $oneItem['nev']."<br>";
-                print "<a href=\"item.php?itemID=".$oneItem['id']."\">" . $oneItem['nev'] . "</a>" . "<br>";
+                print "<a href=\"item.php?itemID=".$oneItem['id']."\" class = \"aa1\">" . $oneItem['nev'] . "</a>" . "<br>";
 
             }
         }

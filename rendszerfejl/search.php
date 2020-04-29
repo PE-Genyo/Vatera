@@ -15,6 +15,10 @@ a:link {
   color: yellow;
 }
 
+a:visited{
+    color: yellowgreen;
+}
+
 a:hover {
     color: green;
 }
