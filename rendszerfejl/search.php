@@ -56,9 +56,10 @@ $user = new User();
 session_start();
 
 if (isset($_REQUEST['submit'])){
-    if((isset($_POST['keresendo'])) && ($_POST['keresendo'] != ""))
+    if((isset($_POST['keresendo'])) && ($_POST['keresendo'] != "" && ($_POST['keresendo'] != null))) {
     extract($_REQUEST);
     $search = $user->searchByName($keresendo);
+    }
 
 }
 

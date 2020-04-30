@@ -75,6 +75,12 @@ class Item{
 
     }
 
+    public function getUserId(){
+
+        return $this->uid;
+
+    }
+
 }
 
 

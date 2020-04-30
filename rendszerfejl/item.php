@@ -49,6 +49,8 @@ div {
 <?php
 include "class.item.php";
 
+session_start();
+
 $item = new Item($_GET['itemID']); 
 
 $item->printInfo();
@@ -60,14 +62,17 @@ if (isset($_REQUEST['submit'])){
     }
 }
 
+if ($_SESSION['uid'] != $item->getUserId()){
+    print " <form action=\"\" method=\"post\" name=\"search\">
+                <input type=\"search\" placeholder=\"Összeg\" name=\"osszeg\"/>
+                <input type=\"submit\" name=\"submit\" value=\"Licitálás\"/>
+                <br><br>
+            </form>";
+}
+
 ?>
 </div>
 
 
-<form action="" method="post" name="search">
-    <input type="search" placeholder="Összeg" name="osszeg"/>
-    <input type="submit" name="submit" value="Licitálás"/>
-    <br><br>
     <a href="search.php" class ="aa1"><h2>Keresés</h2></a><br>
     <a href="myItemS.php" class ="aa1"><h2>Saját hírdetéseim</h2></a>
-</form>
