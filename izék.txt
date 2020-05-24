@@ -7,5 +7,5 @@ CREATE TABLE comments(
     FOREIGN KEY (userID) REFERENCES users(uid)
 )
 
-ALTER table items ADD COLUMN nyertes int(11), 
-ADD CONSTRAINT FOREIGN KEY (nyertes) REFERENCES users(uid)
+ALTER table items ADD COLUMN nyertesID int(11), 
+ADD CONSTRAINT FOREIGN KEY (nyertesID) REFERENCES users(uid)
