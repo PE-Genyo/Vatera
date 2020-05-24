@@ -1,0 +1,11 @@
+CREATE TABLE comments(
+    itemID int,
+    userID int,
+    comment text(500),
+    time datetime,
+    FOREIGN KEY (itemID) REFERENCES items(id),
+    FOREIGN KEY (userID) REFERENCES users(uid)
+)
+
+ALTER table items ADD COLUMN nyertes varchar(30), 
+ADD CONSTRAINT FOREIGN KEY (nyertes) REFERENCES users(uid)
