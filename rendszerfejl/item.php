@@ -39,6 +39,10 @@ div {
     text-align: center;
 }
 
+textarea {
+  resize: none;
+}
+
 </style>
 </head>
 <body>
@@ -55,24 +59,42 @@ $item = new Item($_GET['itemID']);
 
 $item->printInfo();
 
-if (isset($_REQUEST['submit'])){
+if (isset($_REQUEST['licit'])){
     if((isset($_POST['osszeg'])) && ($_POST['osszeg'] != "")){
-        extract($_REQUEST);
-        $item->licit($osszeg);
+        $item->licit($_POST['osszeg']);
     }
 }
 
 if ($_SESSION['uid'] != $item->getUserId()){
     print " <form action=\"\" method=\"post\" name=\"search\">
-                <input type=\"search\" placeholder=\"Összeg\" name=\"osszeg\"/>
-                <input type=\"submit\" name=\"submit\" value=\"Licitálás\"/>
+                <input type=\"number\" placeholder=\"Összeg\" name=\"osszeg\"/>
+                <input type=\"submit\" name=\"licit\" value=\"Licitálás\"/>
                 <br><br>
             </form>";
 }
+
+if (isset($_REQUEST['send'])){
+    
+    $item->addComment($_POST['mycomment']);    
+    
+}
+
+print 
+"<div>
+<form action=\"\" method=\"post\" name=\"mycomment\">
+    <br><br>
+    <textarea placeholder=\"Hozzászólok... (max 500 karakter)\" name=\"mycomment\" id=\"mycomment\" cols=\"90\" rows=\"5\"></textarea><br><br>
+    <input type=submit name=send value=Küldés>
+</form>
+</div>";
+
+$item->printComments();
 
 ?>
 </div>
 
 
-    <a href="search.php" class ="aa1"><h2>Keresés</h2></a><br>
-    <a href="myItemS.php" class ="aa1"><h2>Saját hírdetéseim</h2></a>
+
+
+
+ 

@@ -52,6 +52,8 @@ if (isset($_REQUEST['submit'])) {
     $login = $user->check_login($emailusername, $password);
     if ($login) {
         // Registration Success
+        $maiNap = date("Y-m-d", strtotime("today"));
+        $user->deleteOldItems($maiNap);
         header("location:home.php");
     } else {
         // Registration Failed

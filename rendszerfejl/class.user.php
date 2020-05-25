@@ -41,6 +41,11 @@ class User
 
     }
 
+    public function deleteOldItems($maiDatum){
+        $sql = "DELETE FROM items where idopont < '$maiDatum'";
+        mysqli_query($this->db, $sql);
+    }
+
     public function listMyItems($uid){
 
         $sql = "SELECT * FROM items WHERE uid='$uid'";
