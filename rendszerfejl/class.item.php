@@ -144,7 +144,7 @@ class Item{
         $sql= "SELECT fullname, comment, time FROM comments c join users u on c.userID=u.uid WHERE itemID=$this->itemID ORDER BY time DESC";
         $result = $this->conn->query($sql);
         
-        print "<b>Hozzászólások: </b><br><br>";
+        print "<div class=\"hozz\"><h3><b>Hozzászólások: </b></h3></div><br><br>";
         if(mysqli_num_rows($result) == 0) 
             print "Még nem érkezett hozzászólás";
         else{
@@ -166,5 +166,5 @@ class Item{
     }
 }
 
-
+include("footer.php");
 ?>

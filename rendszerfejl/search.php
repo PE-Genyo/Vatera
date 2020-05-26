@@ -12,7 +12,7 @@ h1, h2 {
 }
 
 a:link {
-  color: yellow;
+    color: green;
 }
 
 a:visited{
@@ -21,6 +21,10 @@ a:visited{
 
 a:hover {
     color: green;
+}
+
+a:active{
+    color: yellow;
 }
 
 p {
@@ -39,14 +43,14 @@ form {
 </head>
 <body>
 
-<h1>Itt tudsz keresni</h1>
+<h1 style="color: black">Itt tudsz keresni</h1>
 <hr style="width: 80%;height: 1px;background-color: black;border: none;">
 <form action="" method="post" name="search">
     <input type="search" placeholder="Keresés név szerint" name="keresendo"/>
     <input type="submit" name="submit" value="Keresés"/>
     <br><br>
     <hr style="width: 80%;height: 1px;background-color: black;border: none;">
-    <h2><a href="home.php">Vissza</a></h2>
+    <h3><a href="home.php">Vissza</a></h3>
 </form>
 
 <p><?php
@@ -62,7 +66,7 @@ if (isset($_REQUEST['submit'])){
     }
 
 }
-
+include("footer.php");
 ?></p>
 
 

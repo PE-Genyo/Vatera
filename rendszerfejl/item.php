@@ -89,12 +89,9 @@ print
 </div>";
 
 $item->printComments();
-
+include("footer.php");
 ?>
 </div>
-
-
-
-
-
- 
+<hr style="width: 80%;height: 1px;background-color: black;border: none;">
+</body>
+</html>
