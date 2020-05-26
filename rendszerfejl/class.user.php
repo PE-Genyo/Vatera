@@ -1,5 +1,6 @@
 <?php
 include "db_config.php";
+include "class.item.php";
 
 class User
 {
@@ -69,13 +70,32 @@ class User
 
     }
 
-    public function addItem($nev, $mennyiseg, $ar, $idopont, $licitkulonbseg, $aktualislicit, $leiras, $uid){
+    public function addItem($nev, $mennyiseg, $ar, $idopont, $licitkulonbseg, $aktualislicit, $leiras, $uid, $image){
+          
             $sql = "INSERT INTO items SET nev='$nev',mennyiseg='$mennyiseg',ar='$ar',
                     idopont='$idopont',licitkulonbseg='$licitkulonbseg',aktualisLicit='$aktualislicit',leiras='$leiras', uid='$uid' ";
             $result = mysqli_query($this->db, $sql) or die(mysqli_connect_errno() . "Data cannot be inserted");
+
+            //mehh...
+            if ($image['name'] != ""){
+                $sql = "SELECT id FROM items WHERE uid=$uid ORDER BY id DESC LIMIT 1";
+                $result = mysqli_query($this->db, $sql) or die(mysqli_connect_errno() . "Data cannot be inserted"); 
+                $row = $result->fetch_assoc(); 
+    
+                $itemID=$row['id'];
+                $item=new Item($itemID);
+                $result = $item->uploadImage($image);
+
+                //tactical facepalm
+                if($result!="OK"){
+                    $sql="delete from items where id=$itemID";
+                    $this->db->query($sql);
+                    print "<div style=\"color: red; font-size: larger; font-weight: bold;\">$result</div>";
+                    $result=false;
+                }
+            }
+            
             return $result;
-
-
     }
 
     /*** for registration process ***/

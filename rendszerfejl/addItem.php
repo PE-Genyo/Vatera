@@ -49,12 +49,13 @@ table {
 
 <?php
 session_start();
-include_once 'class.user.php'; $user = new User();
+include_once 'class.user.php'; 
 
+$user = new User();
 
 if (isset($_REQUEST['submit'])){
     extract($_REQUEST);
-    $addItem = $user->addItem($nev, $mennyiseg,$ar, $idopont, $licitkulonbseg, $aktualislicit, $leiras, $_SESSION['uid']);
+    $addItem = $user->addItem($nev, $mennyiseg,$ar, $idopont, $licitkulonbseg, $aktualislicit, $leiras, $_SESSION['uid'],$_FILES["fileToUpload"]);
     if ($addItem) {
         // Registration Success
         echo 'Sikeres felvitel!';
@@ -91,7 +92,7 @@ include("footer.php");
 <div id="container">
     <h1 style="color: black;">Itt tudsz hirdetést feladni</h1>
     <hr style="width: 80%;height: 1px;background-color: black;border: none;">
-    <form action="" method="post" name="addItem">
+    <form action="" method="post" name="addItem" enctype="multipart/form-data">>
         <table align = "center" id = "table1">
             <tbody>
             <tr>
@@ -120,6 +121,10 @@ include("footer.php");
             <tr>
                 <th>Licit kezdoertek:</th>
                 <td><input type="number" min="0" name="aktualislicit" required="" /></td>
+            </tr>
+            <tr>
+                <th>Kép feltöltése:</th>
+                <td><input type="file" name="fileToUpload" id="fileToUpload"></td>
             </tr>
             <tr>
                 <th>Leiras:</th>
