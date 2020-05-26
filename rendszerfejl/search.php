@@ -27,7 +27,7 @@ a:active{
     color: yellow;
 }
 
-p {
+.keresett {
   font-family: verdana;
   font-size: 20px;
   text-align: center;
@@ -53,7 +53,7 @@ form {
     <h3><a href="home.php">Vissza</a></h3>
 </form>
 
-<p><?php
+<div class="keresett"><?php
 
 include_once 'class.user.php';
 $user = new User();
@@ -66,8 +66,9 @@ if (isset($_REQUEST['submit'])){
     }
 
 }
+print"</div>";
 include("footer.php");
-?></p>
+?>
 
 
 </body>
