@@ -171,11 +171,11 @@ class Item{
                 <thead>
                     <tr>
                         <th class=\"comment-enyh\"><b>" . $row['fullname'] . "</b>" . " - " . $row['time'] . "</th>" . "
-                        <td class=\"comment-xcrh\">";
+                        <td class=\"comment-xcrh\" style=\"background-color:#ace8ef;\">";
 
                 if($row['userID'] == $_SESSION['uid']){
                     print "<form action=\"\" method=\"post\" name=\"del\">
-                    <button type=\"submit\" name=\"del\" value=". $row['id'] ." style=\"width:60px; height: 20px\">Törlés</button>
+                    <button type=\"submit\" name=\"del\" value=". $row['id'] ." style=\"width:60px; height: 20px;\">Törlés</button>
                     </form>";
                 }
 
