@@ -90,6 +90,10 @@ print
 
 $item->printComments();
 
+if(isset($_REQUEST['del'])){
+    $item->deleteMyComment($_POST['del']);
+}
+
 ?>
 </div>
 

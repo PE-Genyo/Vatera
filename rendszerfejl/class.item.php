@@ -1,7 +1,7 @@
 <link rel="stylesheet" type="text/css" href="class_item.css">
 
 <?php
-include "class.user.php";
+include 'db_config.php';
 
 class Item{
 
@@ -18,6 +18,7 @@ class Item{
     private $aktualisLicit;
     private $leiras;
     private $uid;
+    private $image;
 
     public function __construct($itemID)
     {
@@ -53,6 +54,15 @@ class Item{
                 $row = $result->fetch_assoc();
                 $this->nyertes=$row["uname"];
             }
+
+            $sql = "SELECT hashName FROM images WHERE id=$itemID";
+            $result = $this->conn->query($sql);
+            $row = $result->fetch_assoc();
+
+            if (empty($row) || is_null($result))
+                $this->image="default.jpg";  
+            else
+                $this->image=$row["hashName"];
                 
         }       
         else 
@@ -61,7 +71,9 @@ class Item{
     }
 
     public function printInfo(){
-        
+       
+        print"<img src=\"images\\$this->image\" width=\"250px\" height=\"250px\"\>" . "<br><br>";
+
         print"
         <table class=\"tg\" width=20%>
         <thead>
@@ -132,37 +144,106 @@ class Item{
             print "<div class=\"alert\">Érvénytelen hozzászólás</div>";
         }
         else{
-            
+            $comment="<pre>" . $comment ."</pre>";
             $current_user = $_SESSION['uid'];
-            $sql = "INSERT INTO comments VALUES($this->itemID,$current_user,'$comment',CURRENT_TIMESTAMP())";
+            $sql = "INSERT INTO comments(itemID,userID,comment,time) VALUES($this->itemID,$current_user,'$comment',CURRENT_TIMESTAMP())";
             $this->conn->query($sql);
             header("Refresh:0");
         }   
     }
 
     public function printComments(){
-        $sql= "SELECT fullname, comment, time FROM comments c join users u on c.userID=u.uid WHERE itemID=$this->itemID ORDER BY time DESC";
+        $sql= "SELECT fullname, comment, c.userID, time, id FROM comments c join users u on c.userID=u.uid WHERE itemID=$this->itemID ORDER BY time DESC";
         $result = $this->conn->query($sql);
         
         print "<b>Hozzászólások: </b><br><br>";
+
         if(mysqli_num_rows($result) == 0) 
             print "Még nem érkezett hozzászólás";
+
         else{
             while ($row = mysqli_fetch_assoc($result)) {
                 print "<table class=\"comment\" width=35%>
                 <thead>
                     <tr>
                         <th class=\"comment-enyh\"><b>" . $row['fullname'] . "</b>" . " - " . $row['time'] . "</th>" . "
+                        <td class=\"comment-xcrh\">";
+
+                if($row['userID'] == $_SESSION['uid']){
+                    print "<form action=\"\" method=\"post\" name=\"del\">
+                    <button type=\"submit\" name=\"del\" value=". $row['id'] ." style=\"width:60px; height: 20px\">Törlés</button>
+                    </form>";
+                }
+
+                print "</td>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td class=\"comment-ucrh\">" . $row['comment'] . "</td>
+                        <td class=\"comment-ucrh\" colspan=\"2\">" . $row['comment'] . "</td>
                     </tr>
                 </tbody>
                 </table>" . "<br>";
             }
         }
+    }
+
+    public function deleteMyComment($commentID){
+        $sql="DELETE FROM comments WHERE id='$commentID'";
+        $this->conn->query($sql);
+        echo("<script>location.href = 'item.php?itemID=$this->itemID';</script>");
+    }
+
+    public function uploadImage($file){
+        
+        $target_dir = "images/";
+        $target_file = $target_dir . basename($file["name"]);
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+      
+        // Check if image file is a actual image or fake image
+        if(isset($_POST["submit"])) {
+          $check = getimagesize($file["tmp_name"]);
+          if($check !== false) {
+
+            $uploadOk = 1;
+          } else {
+            return "File is not an image.";
+            $uploadOk = 0;
+          }
+        }
+        
+        // Check file size
+        if ($file["size"] > 500000) {
+          return "Sorry, your file is too large.";
+          $uploadOk = 0;
+        }
+        
+        // Allow certain file formats
+        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+        && $imageFileType != "gif" ) {
+          return "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+          $uploadOk = 0;
+        }
+        
+        // Check if $uploadOk is set to 0 by an error
+        if ($uploadOk == 0) {
+          echo "Sorry, your file was not uploaded.";
+        // if everything is ok, try to upload file
+        } else {
+            $hashName = hash('md5',$file["name"]);
+            $target_file=$target_dir . $hashName . '.' . $imageFileType;
+          if (move_uploaded_file($file["tmp_name"], $target_file)) {
+            echo "The file ". basename( $file["name"]). " has been uploaded.";
+          } else {
+            return "Sorry, there was an error uploading your file.";
+          }
+        }
+        
+        $sql="INSERT INTO images VALUES($this->itemID,\"$hashName.$imageFileType\")";
+        $result = $this->conn->query($sql);
+        if($result)
+            return "OK";
     }
 }
 

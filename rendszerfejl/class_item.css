@@ -9,8 +9,9 @@
   font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;max-width: 666px}
 .comment th{background-color:#409cff;border-color:#9ABAD9;border-style:solid;border-width:0px;color:#fff;
   font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.comment .comment-enyh{background-color:#ace8ef;border-color:#000000;color:#000000;font-size:14px;text-align:left;vertical-align:top}
-.comment .comment-ucrh{background-color:#ace8ef;border-color:#000000;color:#000000;text-align:left;vertical-align:top}
+.comment .comment-enyh{background-color:#ace8ef;border-color:#000000;color:#000000;font-size:14px;text-align:left;vertical-align:top;padding-bottom: 0%;}
+.comment .comment-ucrh{background-color:#ace8ef;border-color:#000000;color:#000000;text-align:left;vertical-align:top;}
+.comment .comment-xcrh{background-color:#ace8ef;border-color:#000000;color:#000000;text-align:right;vertical-align:top;padding-bottom: 0%;}
 
 
 .tg  {border-collapse:collapse;border-color:#000000;border-spacing:0;margin:0px auto;table-layout: fixed;}
