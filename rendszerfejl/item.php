@@ -90,15 +90,16 @@ print
 
 $item->printComments();
 
+include("footer.php");
+
+
 if(isset($_REQUEST['del'])){
     $item->deleteMyComment($_POST['del']);
 }
 
+
 ?>
 </div>
-
-
-
-
-
- 
+<hr style="width: 80%;height: 1px;background-color: black;border: none;">
+</body>
+</html>

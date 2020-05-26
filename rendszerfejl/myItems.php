@@ -26,12 +26,12 @@ hr {
     color: yellowgreen;
 }
 
-.aa1:hover {
-    color: green;
-}
-
 .aa1:active{
     color: yellow;
+}
+
+.aa1:visited {
+  color: hotpink;
 }
 
 p {

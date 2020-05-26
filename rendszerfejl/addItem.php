@@ -38,6 +38,7 @@ table {
     color: yellow;
 }
 
+
 #table1 {
     border-collapse: separate;
     border-spacing: 15px;
