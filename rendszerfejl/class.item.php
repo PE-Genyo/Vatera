@@ -167,7 +167,7 @@ class Item{
         print "<div class=\"hozz\"><h3><b>Hozzászólások: </b></h3></div><br><br>";
       
         if(mysqli_num_rows($result) == 0) 
-            print "Még nem érkezett hozzászólás";
+            print "<div class=\"hozz\"><b>Még nem érkezett hozzászólás</b></div>";
 
         else{
             while ($row = mysqli_fetch_assoc($result)) {
@@ -266,7 +266,12 @@ class Item{
           <tr>
             <td class=\"tg-eqqf\"><img src=\"images\\$this->image\" width=\"70px\" height=\"70px\"\></td>
             <td class=\"tg-eqqf\"><b>Jelenlegi licit:" . "<br><br>" . $this->aktualisLicit ." Ft</b></td>
-            <td class=\"tg-eqqf\"><b>Határidő:" . "<br><br>" . $this->idopont ."</b></td>
+            <td class=\"tg-eqqf\"><b>Határidő:"; 
+              if($this->idopont < date("Y-m-d H:i:s",time())) 
+                print "<div style=\"color:red;\">(Lejárt)</div>" . $this->idopont ."</b></td>"; 
+              else 
+                print "<br><br>" . $this->idopont;
+        print "
           </tr>
         </tbody>
         </table></a>

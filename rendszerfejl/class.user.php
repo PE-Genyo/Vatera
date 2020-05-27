@@ -35,7 +35,7 @@ class User
             }
         }
         else{
-            print "Nincs találat.";
+            print "<div style= \"color:red;\">Nincs találat erre: $keresendo</div>";
         }
 
 
