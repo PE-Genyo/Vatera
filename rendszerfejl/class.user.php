@@ -28,11 +28,10 @@ class User
                 $items[] = $item;
             }
             foreach ($items as $oneItem){
-    
-                print "<a href=\"item.php?itemID=".$oneItem['id']."\" class=\"aa1\">" . $oneItem['nev'] . "</a>"  . 
-
-                    " - " . $oneItem['mennyiseg']. " db, " . "  Ár: " . $oneItem['ar'] . " Ft, " . "  Aktuális licit: " . $oneItem['aktualisLicit'] . " Ft " . "<br><br>";                
-
+                $i = new Item($oneItem['id']);
+                $i->printSmall();
+                //print "<a href=\"item.php?itemID=".$oneItem['id']."\" class=\"aa1\">" . $oneItem['nev'] . "</a>"  . 
+                //    " - " . $oneItem['mennyiseg']. " db, " . "  Ár: " . $oneItem['ar'] . " Ft, " . "  Aktuális licit: " . $oneItem['aktualisLicit'] . " Ft " . "<br><br>";                
             }
         }
         else{
