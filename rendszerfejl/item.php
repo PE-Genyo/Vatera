@@ -65,7 +65,7 @@ if (isset($_REQUEST['licit'])){
     }
 }
 
-if ($_SESSION['uid'] != $item->getUserId()){
+if ($_SESSION['uid'] != $item->getUserId() && $item->getIdopont() > date("Y-m-d H:i:s",time())){
     print " <form action=\"\" method=\"post\" name=\"search\">
                 <input type=\"number\" placeholder=\"Összeg\" name=\"osszeg\"/>
                 <input type=\"submit\" name=\"licit\" value=\"Licitálás\"/>
@@ -79,6 +79,7 @@ if (isset($_REQUEST['send'])){
     
 }
 
+//if($item->getIdopont() > date("Y-m-d H:i:s",time())){
 print 
 "<div>
 <form action=\"\" method=\"post\" name=\"mycomment\">
@@ -87,6 +88,7 @@ print
     <input type=submit name=send value=Küldés>
 </form>
 </div>";
+//}
 
 $item->printComments();
 

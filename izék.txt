@@ -1,12 +1,20 @@
+drop table comments
 CREATE TABLE comments(
     itemID int,
     userID int,
     comment text(500),
     time datetime,
-    FOREIGN KEY (itemID) REFERENCES items(id),
-    FOREIGN KEY (userID) REFERENCES users(uid)
+    FOREIGN KEY (itemID) REFERENCES items(id) ON DELETE CASCADE,
+    FOREIGN KEY (userID) REFERENCES users(uid) ON DELETE CASCADE,
+	id int PRIMARY KEY AUTO_INCREMENT
 )
 
+delete from items;
+ALTER TABLE items
+MODIFY COLUMN idopont datetime;
+
+--korabbi izék
+/*
 ALTER table items ADD COLUMN nyertesID int(11), 
 ADD CONSTRAINT FOREIGN KEY (nyertesID) REFERENCES users(uid)
 
@@ -14,3 +22,5 @@ delete from comments
 ALTER TABLE comments ADD COLUMN id int PRIMARY KEY AUTO_INCREMENT
 
 CREATE TABLE images ( id int, hashName varchar(128), FOREIGN KEY (id) REFERENCES items(id) ON DELETE CASCADE)
+*/
+

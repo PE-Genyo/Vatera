@@ -30,8 +30,8 @@ hr {
   color: yellowgreen;
 }
 
-.aa1:active{
-    color: yellow;
+.aa1:visited {
+  color: yellow;
 }
 
 

@@ -5,7 +5,6 @@ include 'db_config.php';
 
 class Item{
 
-  
     private $conn;
 
     private $itemID;
@@ -112,30 +111,39 @@ class Item{
         </tbody>
         </table>
         " . "<br>";
+
+        //print "szerver idő: " . date("Y-m-d H:i:s",time());
+        if($this->idopont < date("Y-m-d H:i:s",time()))
+          print "<div class=\"alert\">A licit véget ért</div>";
     }
 
     public function licit($osszeg){
+
+      if( date("Y-m-d H:i:s",time()) > $this->idopont)
+        print "<div class=\"alert\">Kifutottál az időből :(</div>";
          
-        if($osszeg < $this->aktualisLicit || $osszeg==$this->aktualisLicit)
-            print "<div class=\"alert\">A megadott összeg nem haladja meg az aktuális licitet!</div>";
+      else if($osszeg < $this->aktualisLicit || $osszeg==$this->aktualisLicit)
+        print "<div class=\"alert\">A megadott összeg nem haladja meg az aktuális licitet!</div>";
         
-        else if($osszeg - $this->aktualisLicit < $this->licitkulonbseg)
-            print "<div class=\"alert\">A megadott összeg kisebb mint a minimális különbség!</div>";
+      else if($osszeg - $this->aktualisLicit < $this->licitkulonbseg)
+        print "<div class=\"alert\">A megadott összeg kisebb mint a minimális különbség!</div>";
 
-        else{
-            $current_user = $_SESSION['uid'];
-            $sql = "UPDATE items SET aktualisLicit=$osszeg, nyertesID=$current_user WHERE id=$this->itemID";
-            $this->conn->query($sql);
+      else{
+        $current_user = $_SESSION['uid'];
+        $sql = "UPDATE items SET aktualisLicit=$osszeg, nyertesID=$current_user WHERE id=$this->itemID";
+        $this->conn->query($sql);
 
-            header("Refresh:0");
-        }    
+        header("Refresh:0");
+      }    
 
     }
 
     public function getUserId(){
-
         return $this->uid;
+    }
 
+    public function getIdopont(){
+      return $this->idopont;
     }
 
     public function addComment($comment){
@@ -144,7 +152,7 @@ class Item{
             print "<div class=\"alert\">Érvénytelen hozzászólás</div>";
         }
         else{
-            $comment="<pre>" . $comment ."</pre>";
+            //$comment="<pre>" . $comment ."</pre>";
             $current_user = $_SESSION['uid'];
             $sql = "INSERT INTO comments(itemID,userID,comment,time) VALUES($this->itemID,$current_user,'$comment',CURRENT_TIMESTAMP())";
             $this->conn->query($sql);
@@ -155,13 +163,9 @@ class Item{
     public function printComments(){
         $sql= "SELECT fullname, comment, c.userID, time, id FROM comments c join users u on c.userID=u.uid WHERE itemID=$this->itemID ORDER BY time DESC";
         $result = $this->conn->query($sql);
-        
-
+       
         print "<div class=\"hozz\"><h3><b>Hozzászólások: </b></h3></div><br><br>";
-
-        
-
-
+      
         if(mysqli_num_rows($result) == 0) 
             print "Még nem érkezett hozzászólás";
 
