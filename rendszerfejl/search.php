@@ -69,6 +69,7 @@ if (isset($_REQUEST['submit'])){
 print"</div>";
 include("footer.php");
 ?>
+<br><br><br>
 
 
 </body>

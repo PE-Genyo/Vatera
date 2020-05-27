@@ -42,6 +42,10 @@ p {
   color: black;
 }
 
+.title{
+  color: yellow;
+}
+
 </style>
 </head>
 <body>
@@ -55,13 +59,15 @@ session_start();
 include("footer.php");
 ?>
 
-<h1>A hírdetéseid a következők: </h1>
+<h1 class="title">A hírdetéseid a következők: </h1>
 <hr style="width: 80%;height: 1px;background-color: black;border: none;">
 <br><br>
 <p><?php $user->listMyItems($_SESSION['uid']); ?></p>
 <br>
 <hr style="width: 80%;height: 1px;background-color: black;border: none;">
 <a href="home.php" class = "aa1"><h2>Vissza</h2></a>
+
+<br><br>
 
 </body>
 </html>
