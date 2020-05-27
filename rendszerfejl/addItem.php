@@ -77,7 +77,7 @@ include("footer.php");
         console.log(form.ar.value);
         console.log(form.aktualislicit.value);
 
-        if(form.aktualislicit.value > form.ar.value){
+        if(parseInt(form.aktualislicit.value) > parseInt(form.ar.value)){
             alert( "A licit nem lehet nagyobb mint az ár" );
             return false;
         }
