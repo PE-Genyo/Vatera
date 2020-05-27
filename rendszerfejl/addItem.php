@@ -27,16 +27,17 @@ table {
 }
 
 .aa1:visited{
-    color: yellowgreen;
+    color: yellow;
 }
 
 .aa1:hover {
-    color: green;
+    color: yellowgreen;
 }
 
 .aa1:active{
     color: yellow;
 }
+
 
 #table1 {
     border-collapse: separate;
@@ -54,6 +55,7 @@ $user = new User();
 
 if (isset($_REQUEST['submit'])){
     extract($_REQUEST);
+    $idopont=$idopont.' '.$time;
     $addItem = $user->addItem($nev, $mennyiseg,$ar, $idopont, $licitkulonbseg, $aktualislicit, $leiras, $_SESSION['uid'],$_FILES["fileToUpload"]);
     if ($addItem) {
         // Registration Success
@@ -111,7 +113,10 @@ include("footer.php");
             <tr>
                 <th>Időtartam:</th>
                 <td><input type="date" name="idopont"  required="" /></td>
-
+            </tr>
+            <tr>
+                <th> </th>
+                <td><input type="time" id="time" name="time" required="" /></td>
             </tr>
             <tr>
                 <th>Min. licit különbség:</th>

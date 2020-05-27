@@ -23,15 +23,15 @@ hr {
 }
 
 .aa1:visited{
-    color: yellowgreen;
-}
-
-.aa1:hover {
-    color: green;
+    color: yellow;
 }
 
 .aa1:active{
-    color: yellow;
+    color: yellowgreen;
+}
+
+.aa1:visited {
+  color: yellow;
 }
 
 p {

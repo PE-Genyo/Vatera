@@ -26,7 +26,19 @@ h2 {
 }
 
 .aa1:hover {
-    color: green;
+    color: yellowgreen;
+}
+
+.aa2:link {
+    color: blue;
+}
+
+.aa2:visited{
+    color: blue;
+}
+
+.aa2:hover {
+    color: lightblue;
 }
 
 p {
@@ -56,7 +68,7 @@ if (isset($_REQUEST['submit'])){
     $register = $user->reg_user($fullname, $uname,$upass, $uemail);
     if ($register) {
         // Registration Success
-        echo '<h2>Registration successful <a href="login.php">Click here</a> to login</h2>';
+        echo '<h2>Registration successful <a href="login.php" class="aa2">Click here</a> to login</h2>';
     } else {
         // Registration Failed
         echo '<h2>Registration failed. Email or Username already exits please try again</h2>';

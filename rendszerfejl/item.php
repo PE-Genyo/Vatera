@@ -23,11 +23,11 @@ p {
 }
 
 .aa1:visited{
-    color: yellowgreen;
+    color: yellow;
 }
 
 .aa1:hover {
-    color: green;
+    color: yellowgreen;
 }
 
 form {
@@ -65,7 +65,7 @@ if (isset($_REQUEST['licit'])){
     }
 }
 
-if ($_SESSION['uid'] != $item->getUserId()){
+if ($_SESSION['uid'] != $item->getUserId() && $item->getIdopont() > date("Y-m-d H:i:s",time())){
     print " <form action=\"\" method=\"post\" name=\"search\">
                 <input type=\"number\" placeholder=\"Összeg\" name=\"osszeg\"/>
                 <input type=\"submit\" name=\"licit\" value=\"Licitálás\"/>
@@ -79,6 +79,7 @@ if (isset($_REQUEST['send'])){
     
 }
 
+//if($item->getIdopont() > date("Y-m-d H:i:s",time())){
 print 
 "<div>
 <form action=\"\" method=\"post\" name=\"mycomment\">
@@ -87,18 +88,20 @@ print
     <input type=submit name=send value=Küldés>
 </form>
 </div>";
+//}
 
 $item->printComments();
+
+include("footer.php");
+
 
 if(isset($_REQUEST['del'])){
     $item->deleteMyComment($_POST['del']);
 }
 
+
 ?>
 </div>
-
-
-
-
-
- 
+<hr style="width: 80%;height: 1px;background-color: black;border: none;">
+</body>
+</html>

@@ -19,7 +19,7 @@ class User
 
 
     public function searchByName($keresendo){
-        $sql = "SELECT * FROM items where  nev LIKE '%$keresendo%'";
+        $sql = "SELECT * FROM items where  nev LIKE '%$keresendo%' and idopont>CURRENT_TIMESTAMP()";
         $result = mysqli_query($this->db, $sql);
         $count_row = $result->num_rows;
         if($count_row != 0)
@@ -29,8 +29,8 @@ class User
             }
             foreach ($items as $oneItem){
     
-                print "<a href=\"item.php?itemID=".$oneItem['id']."\">" . $oneItem['nev'] . "</a>"  . 
-                    " - " . $oneItem['mennyiseg']. " db, " . "  Ár: " . $oneItem['ar'] . " Ft, " . "  Aktuális licit: " . $oneItem['aktualisLicit'] . " Ft " . "<br><br>"; 
+                print "<a href=\"item.php?itemID=".$oneItem['id']."\" class=\"aa1\">" . $oneItem['nev'] . "</a>"  . 
+                " - " . $oneItem['mennyiseg']. " db, " . "  Ár: " . $oneItem['ar'] . " Ft, " . "  Aktuális licit: " . $oneItem['aktualisLicit'] . " Ft " . "<br><br>"; 
                     
 
             }
@@ -71,7 +71,7 @@ class User
     }
 
     public function addItem($nev, $mennyiseg, $ar, $idopont, $licitkulonbseg, $aktualislicit, $leiras, $uid, $image){
-          
+     
             $sql = "INSERT INTO items SET nev='$nev',mennyiseg='$mennyiseg',ar='$ar',
                     idopont='$idopont',licitkulonbseg='$licitkulonbseg',aktualisLicit='$aktualislicit',leiras='$leiras', uid='$uid' ";
             $result = mysqli_query($this->db, $sql) or die(mysqli_connect_errno() . "Data cannot be inserted");
@@ -96,6 +96,7 @@ class User
             }
             
             return $result;
+            
     }
 
     /*** for registration process ***/

@@ -11,19 +11,23 @@ h1, h2 {
   text-align: center;
 }
 
-a:link {
-  color: yellow;
+.aa1:link {
+    color: yellow;
 }
 
-a:visited{
+.aa1:visited{
+    color: yellow;
+}
+
+.aa1:hover {
     color: yellowgreen;
 }
 
-a:hover {
-    color: green;
+.aa1:active{
+    color: yellow;
 }
 
-p {
+.keresett {
   font-family: verdana;
   font-size: 20px;
   text-align: center;
@@ -39,17 +43,17 @@ form {
 </head>
 <body>
 
-<h1>Itt tudsz keresni</h1>
+<h1 style="color: black">Itt tudsz keresni</h1>
 <hr style="width: 80%;height: 1px;background-color: black;border: none;">
 <form action="" method="post" name="search">
     <input type="search" placeholder="Keresés név szerint" name="keresendo"/>
     <input type="submit" name="submit" value="Keresés"/>
     <br><br>
     <hr style="width: 80%;height: 1px;background-color: black;border: none;">
-    <h2><a href="home.php">Vissza</a></h2>
+    <h3><a href="home.php" class="aa1">Vissza</a></h3>
 </form>
 
-<p><?php
+<div class="keresett"><?php
 
 include_once 'class.user.php';
 $user = new User();
@@ -62,8 +66,9 @@ if (isset($_REQUEST['submit'])){
     }
 
 }
-
-?></p>
+print"</div>";
+include("footer.php");
+?>
 
 
 </body>
