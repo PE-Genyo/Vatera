@@ -63,5 +63,7 @@ include("footer.php");
 <hr style="width: 80%;height: 1px;background-color: black;border: none;">
 <a href="home.php" class = "aa1"><h2>Vissza</h2></a>
 
+<br><br>
+
 </body>
 </html>
