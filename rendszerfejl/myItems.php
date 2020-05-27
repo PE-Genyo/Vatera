@@ -23,16 +23,17 @@ hr {
 }
 
 .aa1:visited{
-    color: yellowgreen;
+    color: yellow;
+}
+
+.aa1:hover {
+  color: yellowgreen;
 }
 
 .aa1:active{
     color: yellow;
 }
 
-.aa1:visited {
-  color: hotpink;
-}
 
 p {
   font-family: verdana;

@@ -11,19 +11,19 @@ h1, h2 {
   text-align: center;
 }
 
-a:link {
-    color: green;
+.aa1:link {
+    color: yellow;
 }
 
-a:visited{
+.aa1:visited{
+    color: yellow;
+}
+
+.aa1:hover {
     color: yellowgreen;
 }
 
-a:hover {
-    color: green;
-}
-
-a:active{
+.aa1:active{
     color: yellow;
 }
 
@@ -50,7 +50,7 @@ form {
     <input type="submit" name="submit" value="Keresés"/>
     <br><br>
     <hr style="width: 80%;height: 1px;background-color: black;border: none;">
-    <h3><a href="home.php">Vissza</a></h3>
+    <h3><a href="home.php" class="aa1">Vissza</a></h3>
 </form>
 
 <div class="keresett"><?php
