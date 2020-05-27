@@ -71,7 +71,7 @@ class Item{
 
     public function printInfo(){
        
-        print"<img src=\"images\\$this->image\" width=\"250px\" height=\"250px\"\>" . "<br><br>";
+        print"<a href=\"images\\$this->image\"><img src=\"images\\$this->image\" width=\"250px\" height=\"250px\"\></a> ". "<br><br>";
 
         print"
         <table class=\"tg\" width=20%>
@@ -179,7 +179,7 @@ class Item{
 
                 if($row['userID'] == $_SESSION['uid']){
                     print "<form action=\"\" method=\"post\" name=\"del\">
-                    <button type=\"submit\" name=\"del\" value=". $row['id'] ." style=\"width:60px; height: 20px;\">Törlés</button>
+                    <button class=\"button buttonDel\" type=\"submit\" name=\"del\" value=". $row['id'] ." >Törlés</button>
                     </form>";
                 }
 
@@ -252,6 +252,25 @@ class Item{
         $result = $this->conn->query($sql);
         if($result)
             return "OK";
+    }
+
+    public function printSmall(){
+      print"<a href=\"item.php?itemID=$this->itemID\"> 
+      <table class=\"tg\" width=25%>
+        <thead>
+          <tr>
+            <th class=\"tg-6oj4\" colspan=\"3\"><a href=\"item.php?itemID=".$this->itemID."\" class=\"aa1\">" . $this->nev . "</a></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class=\"tg-eqqf\"><img src=\"images\\$this->image\" width=\"70px\" height=\"70px\"\></td>
+            <td class=\"tg-eqqf\"><b>Jelenlegi licit:" . "<br><br>" . $this->aktualisLicit ." Ft</b></td>
+            <td class=\"tg-eqqf\"><b>Határidő:" . "<br><br>" . $this->idopont ."</b></td>
+          </tr>
+        </tbody>
+        </table></a>
+        " . "<br>";
     }
 }
 

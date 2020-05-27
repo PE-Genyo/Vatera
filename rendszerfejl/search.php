@@ -50,7 +50,7 @@ form {
     <input type="submit" name="submit" value="Keresés"/>
     <br><br>
     <hr style="width: 80%;height: 1px;background-color: black;border: none;">
-    <h3><a href="home.php" class="aa1">Vissza</a></h3>
+    <h3><a href="home.php" class="aa1">Vissza</a></h3><br>
 </form>
 
 <div class="keresett"><?php

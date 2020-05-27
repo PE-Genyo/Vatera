@@ -23,10 +23,11 @@
 .tg tr:nth-child(even){background-color: #fabc71;}
 .tg tr:nth-child(odd){background-color: #ffd4a1;}
 .tg td{border-color:#000000;border-width:1px;color:#002b36;
-  font-family:Arial, sans-serif;font-size:16px;overflow:hidden;padding:10px 5px;word-break:normal;}
+  font-family:Arial, sans-serif;font-size:16px;overflow:hidden;padding:10px 5px;word-break:normal;vertical-align: middle;}
 .tg th{background-color:#ffa22f;border-color:#000000;border-width:1px;color:#002b36;
   font-family:Arial, sans-serif;font-size:18px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
 .tg .tg-2klh{border-color:#000000;text-align:right;vertical-align:top}
 .tg .tg-6oj4{border-color:inherit;text-align:center;vertical-align:top;font-weight: bold;}
 .tg .tg-i8xh{text-align:left;vertical-align:top}
-.tg .tg-eqqf{border-color:#000000;text-align:left;vertical-align:top}
+.tg .tg-eqqf{border-color:#000000;text-align:left;vertical-align: middle;}
+
