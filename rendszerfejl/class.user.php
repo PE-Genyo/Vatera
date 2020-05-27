@@ -30,8 +30,8 @@ class User
             foreach ($items as $oneItem){
     
                 print "<a href=\"item.php?itemID=".$oneItem['id']."\" class=\"aa1\">" . $oneItem['nev'] . "</a>"  . 
-                " - " . $oneItem['mennyiseg']. " db, " . "  Ár: " . $oneItem['ar'] . " Ft, " . "  Aktuális licit: " . $oneItem['aktualisLicit'] . " Ft " . "<br><br>"; 
-                    
+
+                    " - " . $oneItem['mennyiseg']. " db, " . "  Ár: " . $oneItem['ar'] . " Ft, " . "  Aktuális licit: " . $oneItem['aktualisLicit'] . " Ft " . "<br><br>";                
 
             }
         }

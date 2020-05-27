@@ -22,7 +22,7 @@ h2 {
 }
 
 .aa1:visited{
-    color: yellowgreen;
+    color: yellow;
 }
 
 .aa1:hover {
